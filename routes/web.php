@@ -14,6 +14,7 @@ Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name(
 
 // site settings route
 Route::get('admin/settings', [DashboardController::class, 'settings'])->name('settings');
+Route::post('admin/change-password', [DashboardController::class, 'changePassword'])->name('changePassword');
 
 //login user
 Route::get('/auth/login', [LoginController::class, 'index'])->name('login');

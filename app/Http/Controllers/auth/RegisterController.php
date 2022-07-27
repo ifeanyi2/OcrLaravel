@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Notifications\WelcomeEmailNotification;
 use Illuminate\Support\Facades\Hash;
 
+
 class RegisterController extends Controller
 {
     public function __construct()

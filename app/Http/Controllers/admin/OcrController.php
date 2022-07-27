@@ -54,7 +54,7 @@ class OcrController extends Controller
     public function saveOcrScore(Request $request){
 
 
-       $user = User::first();
+       $user = User::find(auth()->user()->id);
 
         $no = 1;
         $student_id = $request->STUDENT_ID ;
@@ -68,6 +68,7 @@ class OcrController extends Controller
         $ca8 = $request->ACC8 ;
         $exams = $request->EXAMS ;
         $total = $request->TOTAL ;
+
 
 
         for($i = 0; $i < count($ca1); $i++){
@@ -87,7 +88,7 @@ class OcrController extends Controller
                 'CA6'                 => $ca6[$i] ?? 0,
                 'CA7'                 => $ca7[$i] ?? 0,
                 'CA8'                 => $ca8[$i] ?? 0,
-                'EXAM'               => $exams[$i] ?? 0,
+                'EXAM'                => $exams[$i] ?? 0,
                 'TOTAL'               => $total[$i] ?? 0,
             ];
             //save data to database

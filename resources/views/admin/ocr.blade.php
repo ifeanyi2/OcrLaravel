@@ -63,7 +63,7 @@
     <script src="{{ asset('js/app.js')  }}"></script>
     <script src="{{ asset("ocr/tesseract.min.js") }}"></script>
     <script src="{{ asset("ocr/worker.min.js") }}"></script>
-    
+
     <script>
 
         /* this group of variables deals with image file system capture */
@@ -121,9 +121,9 @@
            **/
            cardHeader.remove();
            hideForCamera.remove();
-           
-                    //remove the input tag for image
-                    recognitionImageInputElement.remove();
+
+            //remove the input tag for image
+            recognitionImageInputElement.remove();
 
            //start camera
            let stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -138,13 +138,6 @@
 
             console.log(image_data_url);
         })
-
-
-
-
-
-    
-
 
         // onchange activate the OCR library to fetch text from image
         recognitionImageInputElement.addEventListener('change', ()=>{
@@ -197,30 +190,24 @@
 
                 }
             }).then(({ data: { text } }) => {
+                // remove special symbols from the captured text
                 const chars = ["|", "_", "[", "/", "@", "]", "=", "%", "&"];
                 let dText = String(text).trim("");
 
                 for (let i = 0; i < chars.length; i++) {
                   dText = dText.replaceAll(chars[i], "");
                 }
-                
-                    
-                     // log the captured texts ..
-                    console.log(dText);
 
-                    //append the captured text to the textarea
-                    capturedValue.textContent = dText;
+                //append the captured text to the textarea
+                capturedValue.textContent = dText;
 
-                    //remove the input tag for image
-                    recognitionImageInputElement.remove();
+                //remove the input tag for image
+                recognitionImageInputElement.remove();
             });
 
         });
 
-
-
-
-        /* 
+        /*
         here we are trying to capture the value in rows
         and also access each individual value in a row
         */
@@ -228,7 +215,7 @@
         const text = document.querySelector("#captured-values");
         let data = [];
         var dataRow = {};
-     
+
 
         btn.addEventListener('click', (e)=>{
             e.preventDefault();
@@ -236,7 +223,7 @@
 
             for (let index = 0; index < rows.length; index++) {
                  const columns = rows[index].split(" ");
-                  dataRow = { 
+                  dataRow = {
                      STUDENT_ID:  (!String(columns[0]).trim())  ? 0 : columns[0],
                      ACC1:  (!String(columns[1]).trim())  ? 0 : columns[1],
                      ACC2:  (!String(columns[2]).trim())  ? 0 : columns[2],
@@ -251,7 +238,7 @@
                  }
 
                  //push the json data to the array
-                
+
                 data.push(dataRow);
 
             }
@@ -265,17 +252,17 @@
                 }
             }).then((resp) => {
 
-                // redirect to the page with form 
+                // redirect to the page with form
                 // that will allow you edit the data before submit to database
                 window.location.href = '/ocr/display';
-            
+
             });
 
-        
-           
+
+
         });
 
-      
+
 
     </script>
 

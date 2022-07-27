@@ -12,16 +12,36 @@
         <div class="col-md-12">
             <div class="row mt-5">
                 <div class="col-md-6">
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if($errors)
+                        @foreach($errors->all() as $key => $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                    @endif
                     <h2>Change Password</h2>
-                    <form action="" method="POST" class="form">
+                    <form action="{{ route('changePassword') }}" method="POST" class="form">
                         @csrf
                         <div class="mb-3">
                             <label for="current_password">Current Password</label>
                             <input type="password" name="current_password" id="current_password" class="form-control" placeholder="Current Passwsord">
+                            @error('current_password')
+                                <span class="help-block">
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="new_password">New Password</label>
                             <input type="password" name="new_password" id="new_password" class="form-control" placeholder="New Password">
+                            @error('new_password')
+                                <span class="help-block">
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password_confirmation">Confirm New Password</label>
